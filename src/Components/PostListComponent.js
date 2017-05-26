@@ -1,7 +1,7 @@
 import React from 'react';
 import PostComponent from './PostComponent';
 
-const postList = ({posts}) => (
+const postListComponent = ({posts}) => (
     <div>
         {posts.map(post => (
             <PostComponent
@@ -12,4 +12,4 @@ const postList = ({posts}) => (
     </div>
 );
 
-export default postList;
+export default postListComponent;

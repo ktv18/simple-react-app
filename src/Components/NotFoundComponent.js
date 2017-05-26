@@ -1,9 +1,9 @@
 import React from 'react';
 
-const notFound = () => (
+const notFoundComponent = () => (
     <h1>
         ¯\_(ツ)_/¯
     </h1>
 );
 
-export default notFound;
+export default notFoundComponent;

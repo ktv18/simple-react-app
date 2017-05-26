@@ -1,7 +1,7 @@
 import React from 'react';
 
-const title = ({title}) => (
+const titleComponent = ({title}) => (
     <h1>{title}</h1>
 );
 
-export default title;
+export default titleComponent;

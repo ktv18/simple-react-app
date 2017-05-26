@@ -41,6 +41,11 @@ const sortByCb = (criteria) => (a, b) => {
     }
     first = first.toLowerCase();
     second = second.toLowerCase();
+    if (first === second) {
+        console.log('first === second');
+        first = a.title;
+        second = b.title;
+    }
     if (first < second) {
         return -1;
     }
@@ -57,7 +62,7 @@ const filterByCityAndCompanyNames = (source, cityName, companyName) => (!cityNam
 export const getFilteredSortedPosts = ({source, filterByCity, filterByCompany, sortedBy}) => {
     let list = filterByCityAndCompanyNames(source, filterByCity, filterByCompany);
     if (sortedBy) {
-        list.sort(sortByCb(sortedBy));
+        list = [...list].sort(sortByCb(sortedBy));
     }
     return list;
 };
