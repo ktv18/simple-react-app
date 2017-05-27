@@ -1,9 +1,9 @@
-export const getUniqueCities = data => data.reduce((prev, acc) => {
+export const getUniqueListOfCitiesCities = data => data.reduce((prev, acc) => {
         prev[acc.address.city] = acc.address.city;
         return prev
 }, {});
 
-export const getUniqueCompanies = data => data.reduce((prev, acc) => {
+export const getUniqueListOfCompanies = data => data.reduce((prev, acc) => {
         prev[acc.company.name] = acc.company.name;
         return prev
 }, {});
@@ -41,17 +41,8 @@ const sortByCb = (criteria) => (a, b) => {
     }
     first = first.toLowerCase();
     second = second.toLowerCase();
-    if (first === second) {
-        console.log('first === second');
-        first = a.title;
-        second = b.title;
-    }
-    if (first < second) {
-        return -1;
-    }
-    if (first > second) {
-        return 1;
-    }
+    if (first < second) { return -1; }
+    if (first > second) { return 1; }
     return 0;
 };
 const filterByCityNameCb = cityName => post => !cityName || post.address.city === cityName;

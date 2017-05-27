@@ -7,15 +7,16 @@ import NotFoundComponent from './NotFoundComponent';
 import Users from '../data/users';
 import Posts from '../data/posts';
 import {
-    getUniqueCities,
-    getUniqueCompanies,
+    getUniqueListOfCitiesCities,
+    getUniqueListOfCompanies,
     joinPostWithUsers,
     getFilteredSortedPosts
 } from '../utils/utils.js';
 
 const posts = joinPostWithUsers(Posts, Users);
-const cities = getUniqueCities(Users);
-const companies = getUniqueCompanies(Users);
+
+const cities = getUniqueListOfCitiesCities(Users);
+const companies = getUniqueListOfCompanies(Users);
 
 class App extends Component {
 
@@ -29,11 +30,11 @@ class App extends Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    //
-      return true;
+      return !(this.state.posts.length === 0 && nextState.posts.length === 0)
   }
 
   componentDidUpdate () {
+      console.log('componentDidUpdate');
       console.log(this.state.posts.length);
   };
 
@@ -60,7 +61,7 @@ class App extends Component {
 
   sortBy = e => {
       const sortedBy = e.target.value;
-      const {posts, filterByCompany, filterByCity} = this.state;
+      const {filterByCompany, filterByCity} = this.state;
       const sortedPosts = getFilteredSortedPosts({source: posts, filterByCity, filterByCompany, sortedBy});
       this.setState({
           sortedBy,
