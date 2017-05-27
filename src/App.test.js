@@ -1,18 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './Components/App';
-import SelectComponent from './Components/SelectComponent';
 import * as utils from './utils/utils';
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});
-
-it('renders selectComp without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<SelectComponent source={{name: 'nname'}}/>, div);
-});
 
 it('joins posts with user', () => {
   const posts = [
@@ -172,6 +158,7 @@ it('gets unique list of companies from users', () => {
   };
   expect(utils.getUniqueListOfCompanies(users)).toEqual(expetcedCompanies);
 });
+
 it('gets filtered sorted posts', () => {
   const posts = [
     {
@@ -335,4 +322,13 @@ it('gets filtered sorted posts', () => {
   ];
   expect(utils.getFilteredSortedPosts({source: posts, filterByCity: 'London', filterByCompany: '', sortedBy: "name"}))
       .toEqual(expectedPosts);
+});
+
+it('gets content by content key', () => {
+  const content = {
+    "defaultTextSelectBox": "eligere ad valorem",
+  };
+  const expectedText =  "eligere ad valorem";
+  expect(utils.contentProvider(content, "defaultTextSelectBox")).toBe(expectedText);
+  expect(utils.contentProvider(content, "blaBlaBla")).toBe("[blaBlaBla]");
 });

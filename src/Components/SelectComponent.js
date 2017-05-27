@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectComponent = ({source, label, onChange}) => (
+const SelectComponent = ({label, defaultValue, source, onChange}) => (
     <label>{label}:
         <select onChange={onChange}>
-            <option value=""> select the value</option>
-            {Object.keys(source).map(item =>  <option key={source[item]} value={source[item]}>{item}</option>)}
+            <option value=""> {defaultValue}</option>
+            {Object.keys(source).map(item =>  <option key={item} value={item}>{source[item]}</option>)}
         </select>
     </label>
 );
 
 SelectComponent.propTypes = {
+    defaultValue: PropTypes.string,
     label: PropTypes.string,
     source: PropTypes.object.isRequired
 };

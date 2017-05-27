@@ -1,5 +1,5 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const postComponent = ({title, body, name, company, address}) => (
     <article>
@@ -12,6 +12,13 @@ const postComponent = ({title, body, name, company, address}) => (
 postComponent.defaultProps = {
     company: {},
     address: {}
+};
+
+postComponent.propTypes = {
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    company: PropTypes.object.isRequired,
+    address: PropTypes.object.isRequired,
 };
 
 export default postComponent;

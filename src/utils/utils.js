@@ -57,3 +57,17 @@ export const getFilteredSortedPosts = ({source, filterByCity, filterByCompany, s
     }
     return list;
 };
+
+export const contentProvider = (content, key, returnKeyIfEmpty = true) => {
+    let result = content;
+    let arr = key.split('.');
+    for (let k of arr) {
+        if (result[k]){
+            result = result[k];
+        } else {
+            return returnKeyIfEmpty ? `[${key}]` : '';
+        }
+    }
+    return result;
+};
+
