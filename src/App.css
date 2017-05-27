@@ -26,7 +26,11 @@ h2 {
 p {
   margin-top: 1em;
 }
-
+select {
+  margin: .25em;
+  padding: .25em;
+  border-radius: .25em;
+}
 nav,
 article {
   margin: 1em auto;

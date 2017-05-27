@@ -1,7 +1,7 @@
 export default {
     "pageTitle": "Stipes",
     "defaultTextSelectBox": "eligere ad valorem",
-    "filterByCity": "Nomen ab urbe filter",
+    "filterByCity": "nomen ab urbe filter",
     "filterByCompany": "filter a comitatu nomen eius",
     "sortBy": "digerere",
     "authorName": "auctor nominis",
