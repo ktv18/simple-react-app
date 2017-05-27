@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.css';
 import TitleComponent from './TitleComponent';
 import SelectComponent from './SelectComponent';
 import PostListComponent from './PostListComponent';
