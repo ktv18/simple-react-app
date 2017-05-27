@@ -6,16 +6,19 @@ import PostListComponent from './PostListComponent';
 import NotFoundComponent from './NotFoundComponent';
 import Users from '../data/users';
 import Posts from '../data/posts';
+import Content from '../data/content';
 import {
-    getUniqueCities,
-    getUniqueCompanies,
+    getUniqueListOfCitiesCities,
+    getUniqueListOfCompanies,
     joinPostWithUsers,
-    getFilteredSortedPosts
+    getFilteredSortedPosts,
+    contentProvider
 } from '../utils/utils.js';
 
 const posts = joinPostWithUsers(Posts, Users);
-const cities = getUniqueCities(Users);
-const companies = getUniqueCompanies(Users);
+
+const cities = getUniqueListOfCitiesCities(Users);
+const companies = getUniqueListOfCompanies(Users);
 
 class App extends Component {
 
@@ -29,17 +32,11 @@ class App extends Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    //
-      return true;
+      return !(this.state.posts.length === 0 && nextState.posts.length === 0)
   }
-
-  componentDidUpdate () {
-      console.log(this.state.posts.length);
-  };
 
   onCityChange = e => {
       const cityName = e.target.value;
-      console.log('cityName', cityName);
       const {filterByCompany, sortedBy} = this.state;
       const filteredList = getFilteredSortedPosts({source: posts, filterByCity: cityName, filterByCompany, sortedBy});
       this.setState({
@@ -60,7 +57,7 @@ class App extends Component {
 
   sortBy = e => {
       const sortedBy = e.target.value;
-      const {posts, filterByCompany, filterByCity} = this.state;
+      const {filterByCompany, filterByCity} = this.state;
       const sortedPosts = getFilteredSortedPosts({source: posts, filterByCity, filterByCompany, sortedBy});
       this.setState({
           sortedBy,
@@ -71,25 +68,28 @@ class App extends Component {
   render() {
     return (
         <div>
-            <TitleComponent title="Posts" />
+            <TitleComponent title={contentProvider(Content,"pageTitle")} />
             <nav>
                 <SelectComponent
-                    label="city filter"
+                    label={contentProvider(Content,"filterByCity")}
+                    defaultValue={contentProvider(Content,"defaultTextSelectBox")}
                     source={this.state.cities}
                     onChange={this.onCityChange}
                 />
                 <SelectComponent
-                    label="company filter"
+                    label={contentProvider(Content,"filterByCompany")}
+                    defaultValue={contentProvider(Content,"defaultTextSelectBox")}
                     source={this.state.companies}
                     onChange={this.onCompanyChange}
                 />
                 <hr />
                 <SelectComponent
-                    label="sort by"
+                    label={contentProvider(Content,"sortBy")}
+                    defaultValue={contentProvider(Content,"defaultTextSelectBox")}
                     source={{
-                        'Author name': 'name',
-                        'City name': 'city',
-                        'Company name': 'company'
+                        "name": contentProvider(Content,"authorName"),
+                        "city": contentProvider(Content,"cityName"),
+                        "company": contentProvider(Content,"companyName"),
                     }}
                     onChange={this.sortBy}
                 />

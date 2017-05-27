@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PostComponent from './PostComponent';
 
 const postListComponent = ({posts}) => (
@@ -11,5 +12,13 @@ const postListComponent = ({posts}) => (
         ))}
     </div>
 );
+
+postListComponent.defaultProps = {
+    posts: []
+};
+
+postListComponent.propTypes = {
+    posts: PropTypes.array.isRequired
+};
 
 export default postListComponent;
